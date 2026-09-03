@@ -27,6 +27,11 @@ Both read the same claim. Neither stores the answer to "what is still
 outstanding" — it is derived on every request — so the two surfaces cannot drift
 apart and tell a caller different things.
 
+![Architecture: two AI surfaces over one insurance claim. The claims-review
+path runs an OpenAI model through Amazon Bedrock behind a guardrail that fails
+closed; the voice path holds a WebRTC session directly with OpenAI, outside the
+AWS boundary, where no Bedrock guardrail can apply.](docs/architecture.png)
+
 > **This is a demonstration, not a product.** All data is synthetic. Read
 > [Known limitations](#known-limitations) before drawing conclusions about
 > production readiness.
@@ -99,8 +104,8 @@ session record rather than from anything the model said.
 - **Amazon Bedrock Knowledge Base** — retrieval for the banking advisor surface
 - **Amazon CloudWatch** — structured logs, tool latency, voice telemetry
 
-Regenerate the architecture diagram with `python3 docs/build_diagram.py`
-(requires `graphviz` on your PATH and the `diagrams` package).
+Regenerate the architecture diagram with `python3 docs/build_architecture_diagram.py`
+(requires `matplotlib`).
 
 ## Prerequisites
 
