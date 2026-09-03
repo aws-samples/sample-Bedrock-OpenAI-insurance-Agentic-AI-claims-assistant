@@ -1,0 +1,318 @@
+/*
+ * Provider Voice Assistant — layout only.
+ *
+ * Inherits the palette, cards, buttons, chips and orb from /styles.css and
+ * /healthcare/healthcare.css so the two surfaces read as one application. This
+ * file adds the three-column call layout and nothing else.
+ */
+
+/* .surfaces (the tab bar) lives in healthcare.css — both pages need it. */
+
+.arch-label { text-align: right; line-height: 1.25; }
+.arch-label b { display: block; font-size: 10.5px; color: var(--teal, #4fd1c5); }
+.arch-label i { font-size: 9.5px; font-style: normal; color: var(--muted); }
+
+/* ── page head ──────────────────────────────────────────────────────── */
+.rt-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 18px 0 14px;
+  flex-wrap: wrap;
+}
+.rt-head h2 { margin: 0 0 3px; font-size: 20px; letter-spacing: -.01em; }
+.rt-head p { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+.badges { display: flex; gap: 7px; flex-wrap: wrap; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+.badge svg { width: 12px; height: 12px; stroke-width: 2.2; fill: none; stroke: currentColor; }
+.badge.ok { color: #4ade80; border-color: rgba(74, 222, 128, .35); background: rgba(74, 222, 128, .08); }
+.badge.no { color: #f87171; border-color: rgba(248, 113, 113, .35); background: rgba(248, 113, 113, .08); }
+
+/* ── three columns ──────────────────────────────────────────────────── */
+.rtgrid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 360px;
+  gap: 14px;
+  align-items: start;
+}
+@media (max-width: 1240px) {
+  .rtgrid { grid-template-columns: 280px minmax(0, 1fr); }
+  .rt-side { grid-column: 1 / -1; }
+}
+@media (max-width: 860px) {
+  .rtgrid { grid-template-columns: 1fr; }
+}
+.rt-side { display: flex; flex-direction: column; gap: 14px; }
+
+/* ── left: claim ────────────────────────────────────────────────────── */
+.claimpick { margin-bottom: 12px; }
+.claimpick input { font-family: var(--mono, ui-monospace, monospace); letter-spacing: .04em; }
+
+.statusrow {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 10px 11px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid;
+  font-size: 12.5px;
+}
+.statusrow svg { width: 15px; height: 15px; flex: none; margin-top: 1px; stroke-width: 2; fill: none; stroke: currentColor; }
+.statusrow .sub { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.statusrow.pending { color: #fbbf24; border-color: rgba(251, 191, 36, .3); background: rgba(251, 191, 36, .07); }
+.statusrow.ok { color: #4ade80; border-color: rgba(74, 222, 128, .3); background: rgba(74, 222, 128, .07); }
+.statusrow b { color: var(--text); }
+
+.outstanding {
+  margin-top: 13px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .02);
+}
+.ol-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+.ol-head svg { width: 13px; height: 13px; stroke-width: 2; fill: none; stroke: currentColor; }
+.ol-head b {
+  margin-left: auto;
+  font-size: 13px;
+  color: #fbbf24;
+  font-variant-numeric: tabular-nums;
+}
+.outstanding.clear .ol-head b { color: #4ade80; }
+.outstanding ul { margin: 0; padding: 0; list-style: none; }
+.outstanding li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+.outstanding li:last-child { border-bottom: 0; }
+.outstanding li .cl {
+  margin-left: auto;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  color: var(--muted);
+  flex: none;
+}
+.ol-foot { margin: 9px 0 0; font-size: 10.5px; line-height: 1.45; color: var(--muted); }
+
+.synthnote {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  margin: 12px 0 0;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+.synthnote svg { width: 12px; height: 12px; flex: none; margin-top: 1px; stroke-width: 2; fill: none; stroke: currentColor; }
+
+/* ── centre: the call ───────────────────────────────────────────────── */
+.rt-call { display: flex; flex-direction: column; }
+.rt-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 20px 20px;
+  gap: 0;
+}
+.rt-stage h3 { margin: 16px 0 4px; font-size: 17px; }
+.rt-stage > p { margin: 0; font-size: 12.5px; color: var(--muted); max-width: 380px; }
+
+.rt-levels { margin: 16px 0 0; justify-content: center; }
+
+.callbtns {
+  display: flex;
+  gap: 9px;
+  margin: 20px 0 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.callbtns .btn.lg { padding: 12px 22px; font-size: 14px; }
+.callbtns .btn.on { color: #fbbf24; border-color: rgba(251, 191, 36, .4); }
+
+.callmeta {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  font-size: 10.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#call-timer { font-family: var(--mono, ui-monospace, monospace); }
+#ttfa { color: var(--teal, #4fd1c5); }
+
+.rt-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 16px 14px;
+  padding: 11px 13px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, .35);
+  background: rgba(248, 113, 113, .08);
+}
+.rt-error svg { width: 15px; height: 15px; flex: none; margin-top: 1px; stroke-width: 2; fill: none; stroke: currentColor; }
+.rt-error b { color: #fecaca; }
+.rt-error .btn { margin-left: auto; flex: none; }
+
+.rt-rail { border-top: 1px solid var(--line); margin-top: auto; }
+
+/* ── right: transcript ──────────────────────────────────────────────── */
+.rt-transcript {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 4px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rtmsg { display: flex; flex-direction: column; gap: 3px; }
+.rtwho {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  color: var(--muted);
+}
+.rtwho svg { width: 12px; height: 12px; stroke-width: 2; fill: none; stroke: currentColor; }
+.rtwho time { margin-left: auto; font-weight: 500; letter-spacing: 0; }
+.rtmsg.user .rtwho { color: #93c5fd; }
+.rtmsg.assistant .rtwho { color: var(--teal, #4fd1c5); }
+.rtbody {
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .035);
+  border: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.rtmsg.user .rtbody { background: rgba(147, 197, 253, .07); border-color: rgba(147, 197, 253, .2); }
+
+/* Shown while the assistant is speaking. The words deliberately arrive only
+   once the audio has finished, so this stands in for them — otherwise the
+   transcript would be silent for the length of the turn. */
+.speaking { display: inline-flex; align-items: center; gap: 4px; padding: 2px 0; }
+.speaking i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal, #4fd1c5);
+  opacity: .35;
+  animation: sp 1.1s ease-in-out infinite;
+}
+.speaking i:nth-child(2) { animation-delay: .18s; }
+.speaking i:nth-child(3) { animation-delay: .36s; }
+@keyframes sp {
+  0%, 100% { opacity: .3; transform: translateY(0); }
+  50%      { opacity: 1;  transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .speaking i { animation: none; opacity: .7; }
+}
+
+.rtsys {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  font-size: 10.5px;
+  color: var(--muted);
+  padding: 2px 0;
+}
+.rtsys svg { width: 12px; height: 12px; flex: none; margin-top: 1px; stroke-width: 2; fill: none; stroke: currentColor; }
+.rtsys.warn { color: #fbbf24; }
+.rtsys.bad { color: #f87171; }
+.rtsys.good { color: #4ade80; }
+
+/* ── right: what happened on this call ───────────────────────────────
+   Replaced a tool-activity console. The caller is a member or a hospital
+   clerk, so this shows outcomes and reference numbers rather than tool
+   names, arguments and JSON. Retrieval calls produce no entry at all. */
+.updates { display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto; }
+.upd {
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--line);
+  border-radius: 7px;
+  padding: 9px 11px;
+  background: rgba(255, 255, 255, .02);
+}
+.upd.good { border-left-color: #4ade80; }
+.upd.warn { border-left-color: #fbbf24; }
+.upd.bad { border-left-color: #f87171; }
+
+.upd-h { display: flex; align-items: center; gap: 7px; }
+.upd-h svg { width: 14px; height: 14px; flex: none; stroke-width: 2.2; fill: none; stroke: currentColor; }
+.upd.good .upd-h svg { color: #4ade80; }
+.upd.warn .upd-h svg { color: #fbbf24; }
+.upd.bad .upd-h svg { color: #f87171; }
+.upd-h b { font-size: 12px; color: var(--text); }
+.upd-h time { margin-left: auto; font-size: 9.5px; color: var(--muted); }
+.upd p { margin: 5px 0 0; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.upd-ref {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: var(--text);
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid var(--line);
+}
+
+/* ── right: authority ───────────────────────────────────────────────── */
+.authority { border-color: rgba(79, 209, 197, .22); }
+.auth-lead { margin: 0 0 12px; font-size: 12.5px; line-height: 1.5; }
+.auth-lead b { color: #fca5a5; }
+.auth-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.auth-label {
+  margin: 0 0 5px;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.auth-label.ok { color: #4ade80; }
+.auth-label.no { color: #f87171; }
+.auth-cols ul { margin: 0; padding-left: 13px; }
+.auth-cols li { font-size: 11px; line-height: 1.5; color: var(--muted); margin-bottom: 3px; }
+.auth-foot {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}

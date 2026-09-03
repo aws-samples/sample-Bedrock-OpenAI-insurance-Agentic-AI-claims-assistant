@@ -1,0 +1,78 @@
+{
+  "accounts": [
+    {"customer_id": "cust-1001", "account_id": "acct-9001", "type": "savings",
+     "product": "Advantage Savings", "opened": "2016-04-11", "balance": 184320.55,
+     "freeze": "none", "joint": false, "ifsc": "EADV0001234", "branch": "Chennai — T Nagar"},
+    {"customer_id": "cust-1002", "account_id": "acct-9002", "type": "nre_savings",
+     "product": "NRE Savings", "opened": "2017-09-02", "balance": 962480.00,
+     "freeze": "partial", "freeze_reason": "periodic KYC overdue",
+     "joint": true, "joint_holders": ["Rahul Mehta", "Sunita Mehta"],
+     "ifsc": "EADV0000987", "branch": "Mumbai — Bandra West"},
+    {"customer_id": "cust-1003", "account_id": "acct-9003", "type": "savings",
+     "product": "Senior Advantage", "opened": "2013-01-19", "balance": 421905.10,
+     "freeze": "none", "joint": false, "ifsc": "EADV0004567", "branch": "Bengaluru — Indiranagar"},
+    {"customer_id": "cust-1004", "account_id": "acct-9004", "type": "savings",
+     "product": "Advantage Savings", "opened": "2024-10-28", "balance": 12840.00,
+     "freeze": "none", "joint": false, "ifsc": "EADV0007788", "branch": "Jaipur — C Scheme"}
+  ],
+
+  "loans": [
+    {"customer_id": "cust-1001", "loan_id": "loan-4471", "type": "home_loan",
+     "product": "Home Advantage", "sanctioned": 4200000, "disbursed": "2019-07-22",
+     "rate_type": "floating", "rate": 8.65, "purpose": "residential_purchase",
+     "outstanding_principal": 2847000, "emi": 36420, "last_emi_date": "2026-08-05",
+     "tenure_months_remaining": 108, "mod_registered": true,
+     "original_documents_held": ["sale deed", "encumbrance certificate", "approved plan"]},
+    {"customer_id": "cust-1003", "loan_id": "loan-5518", "type": "loan_against_property",
+     "product": "Property Advantage", "sanctioned": 1500000, "disbursed": "2022-11-14",
+     "rate_type": "fixed", "rate": 9.90, "purpose": "personal",
+     "outstanding_principal": 918000, "emi": 24180, "last_emi_date": "2026-08-05",
+     "tenure_months_remaining": 44, "mod_registered": true,
+     "original_documents_held": ["sale deed"]}
+  ],
+
+  "policies": [
+    {"customer_id": "cust-1001", "policy_id": "pol-7781", "product": "Family Health Secure",
+     "type": "health_floater", "sum_insured": 500000, "inception": "2024-03-15",
+     "renewed_without_break": true, "members": ["Priya Raman", "Karthik Raman", "Aarav Raman"],
+     "declared_ped": ["hypertension"], "co_pay_percent": 0, "room_rent_capped": true,
+     "premium": 21400, "next_renewal": "2027-03-14"},
+    {"customer_id": "cust-1003", "policy_id": "pol-8842", "product": "Family Health Secure",
+     "type": "health_floater", "sum_insured": 800000, "inception": "2022-01-10",
+     "renewed_without_break": true, "members": ["Ananya Iyer", "Suresh Iyer"],
+     "declared_ped": ["type 2 diabetes"], "co_pay_percent": 10, "room_rent_capped": true,
+     "premium": 46850, "next_renewal": "2027-01-09"}
+  ],
+
+  "transactions": [
+    {"customer_id": "cust-1001", "account_id": "acct-9001", "txn_id": "txn-88231",
+     "date": "2026-08-12", "channel": "UPI", "amount": 24500.00, "direction": "debit",
+     "counterparty": "SUNRISE INTERIORS", "utr": "421926118847",
+     "status": "debited_not_credited", "reversed": false,
+     "narration": "UPI/421926118847/SUNRISE INTERIORS"},
+    {"customer_id": "cust-1001", "account_id": "acct-9001", "txn_id": "txn-88190",
+     "date": "2026-08-09", "channel": "UPI", "amount": 1899.00, "direction": "debit",
+     "counterparty": "BLUEDART COURIER", "utr": "421906004412",
+     "status": "success", "reversed": false, "narration": "UPI/421906004412/BLUEDART"},
+    {"customer_id": "cust-1001", "account_id": "acct-9001", "txn_id": "txn-88044",
+     "date": "2026-08-02", "channel": "NACH", "amount": 36420.00, "direction": "debit",
+     "counterparty": "HOME LOAN EMI", "utr": "NACH0826114",
+     "status": "success", "reversed": false, "narration": "NACH/HOMELOAN/loan-4471"},
+    {"customer_id": "cust-1002", "account_id": "acct-9002", "txn_id": "txn-90117",
+     "date": "2026-08-14", "channel": "IMPS", "amount": 150000.00, "direction": "debit",
+     "counterparty": "SELF — REPATRIATION", "utr": "IMPS826990117",
+     "status": "rejected", "reject_reason": "outward remittance suspended — partial freeze",
+     "reversed": true, "narration": "IMPS/REPAT/SELF"},
+    {"customer_id": "cust-1003", "account_id": "acct-9003", "txn_id": "txn-91002",
+     "date": "2026-08-15", "channel": "UPI", "amount": 8750.00, "direction": "debit",
+     "counterparty": "APOLLO PHARMACY", "utr": "422276330912",
+     "status": "success", "reversed": false, "narration": "UPI/422276330912/APOLLO"}
+  ],
+
+  "network_hospitals": [
+    {"name": "Apollo Hospitals Greams Road", "city": "Chennai", "ppn": true},
+    {"name": "Kauvery Hospital Alwarpet", "city": "Chennai", "ppn": false},
+    {"name": "Manipal Hospital Old Airport Road", "city": "Bengaluru", "ppn": true},
+    {"name": "Fortis Bannerghatta", "city": "Bengaluru", "ppn": false}
+  ]
+}

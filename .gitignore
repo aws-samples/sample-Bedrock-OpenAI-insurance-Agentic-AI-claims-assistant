@@ -1,0 +1,30 @@
+# ── deployment output: contains your account id, pool ids, table names ──
+.deploy/
+outputs.json
+
+# ── generated web config, written by scripts/setup.py ──
+web/config.js
+
+# ── python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# ── cdk ──
+cdk.out/
+.cdk.staging/
+
+# ── node ──
+node_modules/
+
+# ── local environment. Never commit a credential. ──
+.env
+.env.*
+*.pem
+*.key
+
+# ── os ──
+.DS_Store
+Thumbs.db

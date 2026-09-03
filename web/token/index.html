@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Token usage · BFSI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/token/token.css">
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7.5 7 9 4-1.5 7-5 7-9V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10h5M9.5 14h5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3v5h5"/><path d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 1 5 5L9 22H2v-7Z"/></symbol>
+  <symbol id="i-cache" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <div class="logo"><svg><use href="#i-chart"/></svg></div>
+      <div>
+        <h1>Token usage</h1>
+        <p>BFSI Assistant · <span id="model">gpt-realtime-2.1</span></p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="stat"><label>Updated</label><b id="updated">—</b></div>
+      <button id="btn-refresh" class="btn ghost sm"><svg><use href="#i-refresh"/></svg> Refresh</button>
+      <a class="btn ghost sm" href="/ops">Trace</a>
+      <a class="btn ghost sm" href="/">&larr; Assistant</a>
+      <div class="who" id="who" hidden>
+        <span class="who-av" id="who-av">—</span>
+        <span class="who-t"><b id="who-name">—</b><i id="who-role">usage for this identity</i></span>
+        <button id="btn-signout" class="btn ghost sm">Sign out</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="view-signin" class="view signin narrow">
+  <div class="signin-head">
+    <h2>Sign in to view usage</h2>
+    <p>Usage data sits behind the same Cognito authorizer as the assistant API.</p>
+  </div>
+  <div class="signin-form two">
+    <div class="field"><label for="username">Customer ID</label>
+      <input id="username" placeholder="cust-1001" autocomplete="username" spellcheck="false"></div>
+    <div class="field"><label for="password">Password</label>
+      <input id="password" type="password" placeholder="••••••••••••"
+             autocomplete="current-password"></div>
+    <button id="btn-signin" class="btn primary lg">Sign in</button>
+  </div>
+  <p id="signin-error" class="form-error" role="alert"></p>
+</section>
+
+<section id="view-dash" class="view" hidden>
+
+  <div class="tilerow" id="tiles"></div>
+
+  <div class="dgrid">
+
+    <div class="card">
+      <div class="card-head"><h3>Where the tokens go</h3>
+        <span class="hint-inline" id="split-note">audio dominates realtime spend</span></div>
+      <div id="split" class="split"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Cost model</h3>
+        <span class="hint-inline">per 1M tokens · editable</span></div>
+      <div class="rates" id="rates"></div>
+      <p class="rate-note">
+        Defaults follow OpenAI's published gpt-realtime-2.1 rates
+        (audio $32 in / $0.40 cached / $64 out · text $4 / $0.40 / $24).
+        Verify against your own billing page — rates change, and these are stored
+        locally in your browser only.
+      </p>
+    </div>
+
+    <div class="card wide">
+      <div class="card-head"><h3>Sessions</h3>
+        <span class="hint-inline" id="sess-note">most recent first</span></div>
+      <div class="tablewrap"><table id="sessions"><tbody></tbody></table></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Tool calls</h3>
+        <span class="hint-inline">AWS side · from the Tool_Broker</span></div>
+      <div id="tools" class="toolbars"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Per-turn trace</h3>
+        <span class="hint-inline" id="turn-note">pick a session above</span></div>
+      <div id="turns" class="turns"></div>
+    </div>
+
+  </div>
+
+  <p class="footnote">
+    Counts come from the Realtime API's <code>response.done</code> usage object, posted to
+    <code>POST /usage</code> and aggregated in DynamoDB. Cached input tokens are separated
+    from fresh input because they are billed at roughly one eightieth of the audio input rate.
+  </p>
+</section>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="/config.js"></script>
+<script src="/token/token.js"></script>
+</body>
+</html>

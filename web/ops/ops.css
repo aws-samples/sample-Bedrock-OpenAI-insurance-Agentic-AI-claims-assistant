@@ -1,0 +1,59 @@
+/* operator view — layered on /styles.css and /token/token.css */
+
+.opsbar {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.field.inline { display: flex; align-items: center; gap: 10px; }
+.field.inline label { margin: 0; }
+select {
+  font: inherit; font-size: 13px; color: var(--text);
+  background: rgba(0,0,0,.35); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 9px 12px; min-width: 260px;
+  font-family: 'JetBrains Mono', monospace;
+}
+select:focus { outline: none; border-color: rgba(99,102,241,.6); box-shadow: 0 0 0 3px rgba(99,102,241,.14); }
+
+.opsgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.opsgrid .wide { grid-column: 1 / -1; }
+@media (max-width: 1000px) { .opsgrid { grid-template-columns: 1fr; } }
+
+/* evidence turns */
+.evturn { border-bottom: 1px solid var(--border); padding: 14px 0; }
+.evturn:last-child { border-bottom: none; }
+.evturn:first-child { padding-top: 0; }
+.evhead {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 11px;
+  font-size: 11.5px; color: var(--muted);
+}
+.evhead .tool {
+  font-family: 'JetBrains Mono', monospace; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--border);
+  padding: 3px 9px; border-radius: 6px; font-size: 11px;
+}
+.evgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 10px; }
+
+.doclabel { display: flex; gap: 8px; align-items: baseline; }
+.doclabel code {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--muted);
+}
+
+.blocked {
+  margin-top: 12px; padding: 11px 13px; border-radius: var(--r-sm);
+  background: rgba(251,113,133,.07); border: 1px solid rgba(251,113,133,.2);
+  font-size: 12px; color: #fda4af;
+}
+.blocked b { color: #fecdd3; }
+
+/* denials */
+.denial {
+  border: 1px solid rgba(251,113,133,.22); border-left: 2px solid var(--rose);
+  background: rgba(251,113,133,.06); border-radius: var(--r-sm);
+  padding: 11px 13px; margin-bottom: 9px; font-size: 12px; color: #fda4af;
+}
+.denial .act { font-family: 'JetBrains Mono', monospace; color: #fecdd3; font-size: 11px; }
+
+.section-label {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); font-weight: 600; margin: 4px 0 10px;
+}

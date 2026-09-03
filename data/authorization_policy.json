@@ -1,0 +1,125 @@
+{
+  "policy_version": "2026-08-17.1",
+  "description": "Deny-by-default authorization policy. A tool with no rule here is denied. Evaluated only by the Tool_Broker; never by the model and never by the client.",
+  "default_decision": "deny",
+  "rules": {
+    "search_policy": {
+      "required_entitlement": null,
+      "required_assurance": "authenticated",
+      "scope_constrained": false,
+      "state_changing": false,
+      "reason_if_denied": "Policy search requires a signed-in session."
+    },
+    "get_policy_details": {
+      "required_entitlement": null,
+      "required_assurance": "authenticated",
+      "scope_constrained": false,
+      "state_changing": false,
+      "reason_if_denied": "Policy detail requires a signed-in session."
+    },
+    "verify_customer_identity": {
+      "required_entitlement": null,
+      "required_assurance": "authenticated",
+      "scope_constrained": false,
+      "state_changing": false,
+      "reason_if_denied": "Verification requires a signed-in session."
+    },
+    "check_customer_entitlement": {
+      "required_entitlement": null,
+      "required_assurance": "authenticated",
+      "scope_constrained": false,
+      "state_changing": false,
+      "reason_if_denied": "Entitlement checks require a signed-in session."
+    },
+    "get_customer_profile": {
+      "required_entitlement": "view_profile",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "Your profile is not available on this account."
+    },
+    "get_request_status": {
+      "required_entitlement": "view_request",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "You are not able to view service requests on this account."
+    },
+    "create_service_request": {
+      "required_entitlement": "create_request",
+      "required_assurance": "verified",
+      "scope_constrained": true,
+      "state_changing": true,
+      "idempotency_required": true,
+      "reason_if_denied": "Creating this request needs a verified session.",
+      "action_entitlements": {
+        "close_account": "close_account"
+      }
+    },
+    "escalate_to_human": {
+      "required_entitlement": null,
+      "required_assurance": "authenticated",
+      "scope_constrained": false,
+      "state_changing": true,
+      "reason_if_denied": "Escalation requires a signed-in session."
+    },
+
+    "get_holdings": {
+      "required_entitlement": "view_holdings",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "Your accounts, loans and policies are not available on this profile."
+    },
+    "get_transactions": {
+      "required_entitlement": "view_transactions",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "Transaction history is not available on this profile."
+    },
+    "raise_payment_dispute": {
+      "required_entitlement": "raise_dispute",
+      "required_assurance": "verified",
+      "scope_constrained": true,
+      "state_changing": true,
+      "idempotency_required": true,
+      "reason_if_denied": "Raising a payment dispute needs a verified session."
+    },
+    "get_kyc_status": {
+      "required_entitlement": "view_profile",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "KYC status is not available on this profile."
+    },
+    "get_foreclosure_quote": {
+      "required_entitlement": "loan_servicing",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "Loan servicing is not enabled on this profile."
+    },
+    "check_claim_eligibility": {
+      "required_entitlement": "insurance_claim",
+      "required_assurance": "authenticated",
+      "scope_constrained": true,
+      "state_changing": false,
+      "reason_if_denied": "Insurance servicing is not enabled on this profile."
+    },
+    "initiate_cashless_preauth": {
+      "required_entitlement": "insurance_claim",
+      "required_assurance": "verified",
+      "scope_constrained": true,
+      "state_changing": true,
+      "idempotency_required": true,
+      "reason_if_denied": "Starting a cashless authorisation needs a verified session."
+    }
+  },
+  "high_risk_request_types": ["close_account", "payment_dispute", "cashless_preauth"],
+  "assurance_rank": {
+    "authenticated": 1,
+    "verified": 2
+  },
+  "verified_validity_seconds": 600
+}

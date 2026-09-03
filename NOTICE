@@ -1,0 +1,10 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+This sample integrates with the OpenAI API (Realtime and Responses). OpenAI is
+not an AWS service. Your use of it is governed by your own agreement with
+OpenAI, and you are responsible for the API costs it incurs. No OpenAI
+credential is included in this repository.
+
+All customer, claim, hospital, insurer and policy data in this repository is
+synthetic and was written for demonstration. It does not describe any real
+person, provider, insurer or contract.
